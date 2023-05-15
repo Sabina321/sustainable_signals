@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description='RecPlay')
 ################
 # Train and Test set
 ################
-parser.add_argument('--output_path', type=str, default="distilbert_finch_cat_tfidf_PR")
+parser.add_argument('--output_path', type=str, default="output")
 parser.add_argument('--data_path', type=str, default='data/final_data_train.csv')
 parser.add_argument('--tfidf_path', type=str, default='data/tfidf.npy')
 parser.add_argument('--test_path', type=str, default='data/final_data_test.csv')
