@@ -51,4 +51,4 @@ python3 main.py \
 
 ## Outputs
 
-Update: You can find the outputs of our model in the "expe" folder.
+You can find the outputs of our model in the ''output'' folder, and testing results in the ''expe'' folder.
