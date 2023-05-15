@@ -32,8 +32,8 @@ parser.add_argument('--mode', type=str, default='CV')
 parser.add_argument('--model_type', type=str, default='Anno_add')
 
 
-parser.add_argument('--model_name', type=str, default='climatebert/distilroberta-base-climate-f')
-#parser.add_argument('--model_name', type=str, default='distilbert-base-uncased')
+#parser.add_argument('--model_name', type=str, default='climatebert/distilroberta-base-climate-f')
+parser.add_argument('--model_name', type=str, default='distilbert-base-uncased')
 parser.add_argument('--ro_model_name', type=str, default='roberta-base')
 parser.add_argument("--lr_scheduler_type", default='linear', type=str,
             help="lr_scheduler_type")
