@@ -7,9 +7,8 @@ parser = argparse.ArgumentParser(description='RecPlay')
 # Train and Test set
 ################
 parser.add_argument('--output_path', type=str, default="output")
-parser.add_argument('--data_path', type=str, default='data/final_data_train.csv')
-parser.add_argument('--tfidf_path', type=str, default='data/tfidf.npy')
-parser.add_argument('--test_path', type=str, default='data/final_data_test.csv')
+parser.add_argument('--data_path', type=str, default='data/synthetic_final_data_train.csv')
+parser.add_argument('--test_path', type=str, default='data/synthetic_final_data_test.csv')
 
 parser.add_argument('--random_seed', type=int, default=45)
 parser.add_argument('--data_split_seed', type=int, default=42)
@@ -22,14 +21,14 @@ parser.add_argument('--train_batch_size', type=int, default=16)
 parser.add_argument('--test_batch_size', type=int, default=16)
 parser.add_argument('--save_total_limit', type=int, default=3)
 parser.add_argument('--num_epochs', type=int, default=5)
-parser.add_argument('--save_logging_steps', type=int, default=500)
+parser.add_argument('--save_logging_steps', type=int, default=50)
 parser.add_argument('--mode', type=str, default='CV')
 
 ###############
 # Model
 ###############
 
-parser.add_argument('--model_type', type=str, default='Anno_add')
+parser.add_argument('--model_type', type=str, default='Cate')
 
 
 #parser.add_argument('--model_name', type=str, default='climatebert/distilroberta-base-climate-f')

@@ -1,24 +1,11 @@
 import pandas as pd
-from tqdm import tqdm
-import numpy as np
+
 import json
-import torch
-import transformers
-import random
-import os
-from torch import nn
-from sklearn.model_selection import train_test_split
 from scipy import stats
 
-from datasets import load_dataset, Dataset, load_metric, DatasetDict
-
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
-from transformers import DataCollatorWithPadding, EarlyStoppingCallback
-from transformers import DistilBertPreTrainedModel, DistilBertConfig
 from transformers import DistilBertForSequenceClassification, AutoConfig, AutoModel, AutoModelForSequenceClassification
-from transformers.modeling_outputs import SequenceClassifierOutput
 
-from helper import make_train_test, clean_price, seed_everything
 from options import args
 from preprocess import preprocess, preprocess_cv
 from model import noCate, Cate, Env_add, Anno_add, Anno_only
@@ -76,6 +63,12 @@ def CV(args):
 		res.append(sem)
 
 	expe_name = "expe/"
+	if args.model_name == "climatebert/distilroberta-base-climate-f":
+		expe_name += "climatebert"
+	elif args.model_name == "distilbert-base-uncased":
+		expe_name += "distilbert"
+	else:
+		expe_name += "roberta"
 	expe_name += "_" + str(args.random_seed)
 	expe_name += "_" + str(args.mode)
 	expe_name += "_" + str(args.model_type)
@@ -90,7 +83,6 @@ def CV(args):
 		json.dump(res, f)
 
 	return res
-
 
 def onTest(args):
 

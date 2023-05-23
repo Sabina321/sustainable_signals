@@ -23,7 +23,8 @@ tqdm==4.59.0
 transformers==4.25.1
 
 We pre-trained several models. If you want to run the models other than ''Cate'', please download the folders 
-''distilroberta-envclaim'' and ''pre_review'', and put them in the directory ''deep_learning_package''.
+''distilroberta-envclaim'' and ''pre_review'', and put them in the directory ''deep_learning_package''. 
+The pre-trained ''distilroberta-envclaim'' and ''pre_review'' models are open on request.
 
 
 ## Usage

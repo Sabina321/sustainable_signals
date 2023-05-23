@@ -1,26 +1,10 @@
 import pandas as pd
-from tqdm import tqdm
-import numpy as np
-import json
-import torch
-import transformers
-import random
-import os
-from torch import nn
-from sklearn.model_selection import train_test_split
 
 from datasets import load_dataset, Dataset, load_metric, DatasetDict
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from transformers import DataCollatorWithPadding, EarlyStoppingCallback
-from transformers import DistilBertPreTrainedModel, DistilBertConfig
-from transformers import DistilBertForSequenceClassification, AutoConfig, AutoModel, AutoModelForSequenceClassification
-from transformers.modeling_outputs import SequenceClassifierOutput
-
 from helper import make_train_test, clean_price, seed_everything
-from options import args
-
-
 
 def assign_cat(category):
     if category ==  "Beauty & Personal Care":
@@ -72,12 +56,10 @@ def preprocess(args):
 
     def preprocess_function3(examples):
 
-        return tokenizer(examples["reviews"], padding=True, truncation=True)
+        return pre_tokenizer(examples["reviews"], padding=True, truncation=True)
 
     df = pd.read_csv(args.data_path)
     df1 = pd.read_csv(args.test_path)
-
-    tfidf = np.load(args.tfidf_path)
 
     df['rating'] = df['rating'].fillna(0)
     df1['rating'] = df1['rating'].fillna(0)
@@ -112,6 +94,7 @@ def preprocess(args):
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     ro_tokenizer = AutoTokenizer.from_pretrained(args.ro_model_name)
+    pre_tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
 
     tokenized_dataset = split_datasets.map(preprocess_function2, batched=True)
     tokenized_dataset = tokenized_dataset.rename_column("input_ids", "input_ids0")
@@ -123,11 +106,11 @@ def preprocess(args):
 
     tokenized_dataset = tokenized_dataset.map(preprocess_function, batched=True)
 
-    create_cat(tokenized_dataset)  ##################
+    create_cat(tokenized_dataset)
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
-    return tokenized_dataset, data_collator, len(tfidf[1]), tokenizer, ro_tokenizer
+    return tokenized_dataset, data_collator, 0, tokenizer, ro_tokenizer
 
 
 
@@ -143,13 +126,11 @@ def preprocess_cv(args, fold):
 
     def preprocess_function3(examples):
 
-        return tokenizer(examples["reviews"], padding=True, truncation=True)
+        return pre_tokenizer(examples["reviews"], padding=True, truncation=True)
 
     df_ = pd.read_csv(args.data_path)
     df = df_[df_["fold"] != fold].reset_index(drop=True)
     df1 = df_[df_["fold"] == fold].reset_index(drop=True)
-
-    tfidf = np.load(args.tfidf_path)
 
     df['rating'] = df['rating'].fillna(0)
     df1['rating'] = df1['rating'].fillna(0)
@@ -184,6 +165,7 @@ def preprocess_cv(args, fold):
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     ro_tokenizer = AutoTokenizer.from_pretrained(args.ro_model_name)
+    pre_tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
 
     tokenized_dataset = split_datasets.map(preprocess_function2, batched=True)
     tokenized_dataset = tokenized_dataset.rename_column("input_ids", "input_ids0")
@@ -195,8 +177,8 @@ def preprocess_cv(args, fold):
 
     tokenized_dataset = tokenized_dataset.map(preprocess_function, batched=True)
 
-    create_cat(tokenized_dataset)  ##################
+    create_cat(tokenized_dataset)
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
-    return tokenized_dataset, data_collator, len(tfidf[1]), tokenizer, ro_tokenizer
+    return tokenized_dataset, data_collator, 0, tokenizer, ro_tokenizer
