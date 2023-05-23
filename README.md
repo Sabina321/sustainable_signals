@@ -50,6 +50,16 @@ python3 main.py \
     --kitchen_dim 512
 ```
 
-## Outputs
+You can also run 
+```shell
+bash run.sh
+```
+to generate our results in the paper.
+
+## Data
+
+The data in the repo are the synthetic data just for testing.
+
+## Output File
 
 You can find the outputs of our model in the ''output'' folder, and testing results in the ''expe'' folder.
