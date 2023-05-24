@@ -1,98 +1,33 @@
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type Cate \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 1024\
-    --beauty_dim 1024 \
-    --baby_dim 256 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
+for mt in climatebert/distilroberta-base-climate-f 
+do
+    for hou_dim in 512 768
+    do
+        for bea_dim in 512 768
+        do
+            for bb_dim in 512 768
+            do
+                for kit_dim in 512 768
+                do
 
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type Cate \
-    --model_name distilroberta-base \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 512 \
-    --beauty_dim 256 \
-    --baby_dim 256 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
+                python3 main.py \
+                        --num_epochs 13 \
+                        --mode onTest \
+                        --train_batch_size 32 \
+                        --test_batch_size 32 \
+                        --model_type Cate \
+                        --model_name $mt \
+                        --save_logging_steps 500 \
+                        --learning_rate 5e-5 \
+                        --house_dim $hou_dim \
+                        --beauty_dim $bea_dim \
+                        --baby_dim $bb_dim \
+                        --kitchen_dim $kit_dim \
 
-
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type Cate \
-    --model_name climatebert/distilroberta-base-climate-f \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 1024 \
-    --beauty_dim 256 \
-    --baby_dim 1024 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
+                done
+            done
+        done
+    done
+done
 
 
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type noCate \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 1024\
-    --beauty_dim 1024 \
-    --baby_dim 256 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
-
-
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type noCate \
-    --model_name distilroberta-base \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 512 \
-    --beauty_dim 256 \
-    --baby_dim 256 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
-
-
-python3 main.py \
-    --num_epochs 13 \
-    --mode onTest \
-    --model_type noCate \
-    --model_name climatebert/distilroberta-base-climate-f \
-    --train_batch_size 32 \
-    --test_batch_size 32 \
-    --save_logging_steps 500 \
-    --learning_rate 5e-5 \
-    --house_dim 1024 \
-    --beauty_dim 256 \
-    --baby_dim 1024 \
-    --kitchen_dim 256 \
-    --data_path data/synthetic_final_data_train.csv \
-    --test_path data/synthetic_final_data_test.csv \
 
