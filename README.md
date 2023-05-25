@@ -63,3 +63,14 @@ The data in the repo are the synthetic data just for testing.
 ## Output File
 
 You can find the outputs of our model in the ''output'' folder, and testing results in the ''expe'' folder.
+
+## Citation
+
+```@inproceedings{sustainability_signals,
+  title     = {{SUSTAINABLESIGNALS:
+An AI Approach for Inferring Consumer Product Sustainability}},
+  author    = {Lin, Tong and Xu, Tianliang and Zac, Amit and Tomkins, Sabina},
+  booktitle = {Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence},
+  year      = {2023},
+  note      = {AI And Social Good Track},
+}```
