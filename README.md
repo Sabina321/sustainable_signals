@@ -58,7 +58,8 @@ to generate our results in the paper.
 
 ## Data
 
-The data in the repo are the synthetic data just for testing.
+The data in the repo are the synthetic data just for testing the code.
+We have provided text annotations for the reviews at this link: [https://socialmediaarchive.org/record/45?&ln=en](https://socialmediaarchive.org/record/45?&ln=en).
 
 ## Output File
 
@@ -72,6 +73,6 @@ You can find the outputs of our model in the ''output'' folder, and testing resu
   author    = {Lin, Tong and Xu, Tianliang and Zac, Amit and Tomkins, Sabina},
   booktitle = {Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence},
   year      = {2023},
-  note      = {AI and Social Good Track},
+  note      = {AI and Social Good Track. The first authors contributed equally.},
 }
 ```
